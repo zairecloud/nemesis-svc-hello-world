@@ -1,0 +1,15 @@
+name: Build & deploy
+on: [push]
+jobs:
+  scp:
+    name: SSH file transfer (scp)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Copy docker-compose file to remote
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.RADEON_SSH_HOST }}
+          key: ${{ secrets.RADEON_SSH_PRIVATE_KEY }}
+          source: "docker-compose.yml"
+          target: /home/nunes/
