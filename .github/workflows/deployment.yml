@@ -5,7 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Docker-compose remote deployment
-        uses: actions/checkout@v3
         uses: astappiev/docker-compose-remote-action@master
         with:
           ssh_host: ${{ secrets.RADEON_SSH_HOST }}
