@@ -1,14 +1,15 @@
-name: Deployment
+name: Deploy
 on: [push]
 jobs:
-  deployment:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Docker compose deployment
-        uses: TapTap21/docker-remote-deployment-action@v1.0
+      - name: Docker-compose remote deployment
+        uses: actions/checkout@v3
+        uses: astappiev/docker-compose-remote-action@master
         with:
-          remote_docker_host: ${{ secrets.RADEON_SSH_HOST }}
+          ssh_host: ${{ secrets.RADEON_SSH_HOST }}
+          ssh_user: ${{ secrets.RADEON_SSH_USER }}
           ssh_private_key: ${{ secrets.RADEON_SSH_PRIVATE_KEY }}
-          ssh_public_key: ${{ secrets.RADEON_SSH_PUBLIC_KEY }}
-          stack_file_name: docker-compose.yml
-          args: -p hello-world up -d
+          ssh_host_public_key: ${{ secrets.RADEON_SSH_PUBLIC_KEY }}
+          docker_compose_prefix: hello-world
