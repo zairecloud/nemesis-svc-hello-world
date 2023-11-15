@@ -10,6 +10,8 @@ jobs:
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.RADEON_SSH_HOST }}
+          username: ${{ secrets.RADEON_SSH_USER }}
+          port: ${{ secrets.RADEON_SSH_PORT }}
           key: ${{ secrets.RADEON_SSH_PRIVATE_KEY }}
           source: "docker-compose.yml"
           target: /home/nunes/
