@@ -15,6 +15,7 @@ jobs:
           key: ${{ secrets.RADEON_SSH_PRIVATE_KEY }}
           source: "docker-compose.yml"
           target: /home/nunes/services/hello-world
+  ssh:
     name: Execute docker-compose up (ssh)
     runs-on: ubuntu-latest
     steps:
