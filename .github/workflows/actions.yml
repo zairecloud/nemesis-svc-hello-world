@@ -2,7 +2,7 @@ name: Build & deploy
 on: [push]
 jobs:
   scp:
-    name: SSH file transfer (scp)
+    name: Copy docker-compose file (scp)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,4 +14,15 @@ jobs:
           port: ${{ secrets.RADEON_SSH_PORT }}
           key: ${{ secrets.RADEON_SSH_PRIVATE_KEY }}
           source: "docker-compose.yml"
-          target: /home/nunes/
+          target: /home/nunes/services/hello-world
+    name: Execute docker-compose up (ssh)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.RADEON_SSH_HOST }}
+          username: ${{ secrets.RADEON_SSH_USER }}
+          key: ${{ secrets.RADEON_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.RADEON_SSH_PORT }}
+          script: docker compose -f /home/nunes/services/hello-world/docker-compose.yml up -d
+
