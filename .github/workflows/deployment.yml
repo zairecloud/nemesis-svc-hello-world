@@ -7,7 +7,7 @@ jobs:
       - name: Docker-compose remote deployment
         uses: alex-ac/github-action-ssh-docker-compose@master
         with:
-          ssh_host: ${{ secrets.RADEON_SSH_HOST }}
+          ssh_host: zairecloud.pt
           ssh_user: ${{ secrets.RADEON_SSH_USER }}
           ssh_private_key: ${{ secrets.RADEON_SSH_PRIVATE_KEY }}
           docker_compose_prefix: hello-world
