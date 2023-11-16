@@ -2,7 +2,7 @@ version: '3'
 services:
   wordpress:
     image: wordpress
-    container_name: wordpress 
+    container_name: wordpress
     links:
       - db:mysql
     expose:
@@ -13,10 +13,12 @@ services:
       - "LETSENCRYPT_HOST=wordpress.zairecloud.pt"
     networks:
       - nginx-proxy_network
+    restart: unless-stopped
   db:
     image: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: example
+    restart: unless-stopped
       
 networks:
   nginx-proxy_network:
