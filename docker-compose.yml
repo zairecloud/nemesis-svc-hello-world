@@ -11,8 +11,8 @@ services:
       - "VIRTUAL_HOST=wordpress.zairecloud.pt"
       - "VIRTUAL_PORT=80"
       - "LETSENCRYPT_HOST=wordpress.zairecloud.pt"
-  networks:
-    - nginx-proxy_network
+    networks:
+      - nginx-proxy_network
   db:
     image: mariadb
     environment:
