@@ -6,7 +6,7 @@ services:
     links:
       - db:mysql
     expose:
-      - "81"
+      - "80"
     environment:
       - "VIRTUAL_HOST=wordpress.zairecloud.pt"
       - "VIRTUAL_PORT=81"
